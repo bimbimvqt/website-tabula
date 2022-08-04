@@ -1,0 +1,547 @@
+@import '../../themes/variable';
+@import '../../base/component/component';
+
+//HEADER
+.header {
+    background-color: $bg-none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 120px;
+
+        .logo {
+            img {
+                width: 100%;
+            }
+        }
+
+        .navbar {
+            .active {
+                position: relative;
+
+                &::before {
+                    height: 12px;
+                    width: 12px;
+                    border-radius: $border-radius1;
+                    content: "";
+                    background-color: $text-c1-pink;
+                    position: absolute;
+                    bottom: -35px;
+                    left: 37%;
+                    opacity: 1;
+                }
+            }
+
+            a {
+                text-decoration: none;
+                margin-left: 40px;
+                @include text($text-base, $text-semibold, $text-c1-dark);
+                position: relative;
+
+                &::before {
+                    height: 12px;
+                    width: 12px;
+                    border-radius: $border-radius1;
+                    content: "";
+                    background-color: $text-c1-pink;
+                    position: absolute;
+                    left: 37%;
+                    opacity: 0;
+                    top: 38px;
+                }
+
+                &:hover {
+                    &::before {
+                        opacity: 1;
+                        transition: .8s;
+                    }
+                }
+            }
+        }
+
+        .connect {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .btn-phone {
+                margin-right: 20px;
+                @include button($text-1xs, $text-regular, $text-c1-light, $bg-c1-primary, $padding-button, $border-button, $border-radius, $bg-c1-light, $text-c1-pink);
+
+                // &:hover {
+                //     animation: button .1s;
+                //     color: $text-c1-pink;
+
+                // }
+
+                &:hover a {
+                    animation: button 1s;
+                    color: $text-c1-pink;
+                }
+
+                i {}
+
+                a {
+                    text-decoration: none;
+                    color: $text-c1-light;
+                }
+            }
+
+            .connect-social {
+                i {
+                    margin-left: 10px;
+                    transition: .6s;
+
+                    &:hover {
+                        color: $text-c1-pink;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sticky {
+    background-color: #fff;
+    height: 70px;
+}
+
+.sticky .logo img {
+    display: none;
+}
+
+.sticky .scroll {
+    height: 100%;
+}
+
+.sticky .scroll .navbar a::before {
+    top: 34px;
+}
+
+//CAROUSEL
+
+.carousel {
+    // height: 100vh;
+    // width: 100vw;
+    background-image: url('../../../img/yellow_top_wave_01.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .main-left {
+            position: relative;
+            top: -50px;
+            animation: fadeinLeft .5s;
+
+            h2 {
+                @include text($text-2xl, $text-regular, $text-c1-pink);
+            }
+
+            p {
+                @include text($text-6xl, $text-bold, $text-c1-dark);
+                margin-top: 15px;
+                letter-spacing: 2px;
+
+            }
+        }
+
+        .main-right {
+            img {
+                width: 100%;
+                position: relative;
+                top: 140px;
+                animation: fadeIn 1.5s;
+            }
+        }
+    }
+
+    .carousel-footer {
+        img {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+
+        }
+    }
+}
+
+//INTERMEDIATE
+
+.intermediate {
+    background-image: url('../../../img/violet-bottom.png');
+    background-size: cover;
+    background-position: -150px;
+
+    .container {
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+
+            .col {
+                @for $i from 0 to 8 {
+                    .item-#{$i+1} {
+                        animation: fadeIn 1.2s*($i+1);
+                    }
+                }
+
+                width: calc(100%/4);
+                padding: 15px 20px;
+
+                .card {
+                    transition: all .7s;
+
+                    &:hover {
+                        box-shadow: 1px 15px 16px -7px rgba(0, 0, 0, 0.71);
+                        -webkit-box-shadow: 1px 15px 16px -7px rgba(0, 0, 0, 0.71);
+                        -moz-box-shadow: 1px 15px 16px -7px rgba(0, 0, 0, 0.71);
+                    }
+
+                    .zoom {
+
+                        overflow: hidden;
+
+                        img {
+                            transition: transform 0.5s ease;
+                            opacity: 1;
+                            height: auto;
+                            display: block;
+                            max-width: 100%;
+                            border-radius: 10px 10px 0 0;
+
+                            &:hover {
+                                transform: scale(1.1);
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .card-body {
+                        background-color: $bg-c1-light;
+                        border-radius: 0 0 10px 10px;
+                        text-align: center;
+                        padding: 35px 20px;
+
+                        h3 {
+                            @include text($text-base, $text-regular, $text-c1-pink);
+                        }
+
+                        p {
+                            @include text($text-3xl, $text-semibold, $text-c1-dark);
+                            padding: 15px 0;
+                        }
+
+                        span {
+                            @include text();
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+.courses {
+    position: relative;
+    z-index: 10;
+
+    .container {
+
+        z-index: 3;
+        display: flex;
+        // grid-template-columns: 1fr 1fr;
+        align-items: center;
+        width: 100%;
+
+        .left {
+
+            img {
+                max-width: 100%;
+                height: auto;
+                padding-left: 150px;
+            }
+        }
+
+        .right {
+            padding-left: 10px;
+            height: 550px;
+            width: 400px;
+            background-color: $bg-c1-light;
+            border-radius: $border-radius;
+            box-shadow: 0 30px 30px -10px rgb(0 0 0 / 20%);
+
+
+            .title {
+                @include text($text-4xl, $text-semibold, $text-c1-dark);
+                padding-bottom: 50px;
+
+            }
+
+            .form {
+                .form-group {
+
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    padding-bottom: 10px;
+                    gap: 10px;
+
+                    .icon {
+                        position: relative;
+
+                        .fa-solid {
+
+                            position: absolute;
+                            top: 1em;
+                            left: 1em;
+                            line-height: 1;
+                            color: $text-c1-pink;
+                        }
+
+                        select {
+                            border: 1px solid rgba(0, 0, 0, .1);
+                            font-size: $text-1xs;
+                            height: 50px;
+                            width: 370px;
+                            border-radius: 50px;
+                            padding-left: 35px;
+
+                        }
+
+                        input {
+                            border: 1px solid rgba(0, 0, 0, .1);
+                            font-size: $text-1xs;
+                            height: 50px;
+                            width: 180px;
+                            border-radius: 50px;
+                            padding-left: 35px;
+
+                        }
+
+                        textarea {
+                            border: 1px solid rgba(0, 0, 0, .1);
+                            font-size: $text-1xs;
+                            width: 370px;
+                            height: 150px;
+                            border-radius: 30px;
+                            padding-left: 35px;
+                            padding-top: 15px;
+                        }
+                    }
+
+
+
+                }
+
+                .btnSend {
+                    margin-top: 40px;
+                    width: 140px;
+                    @include button($text-base, $text-regular, $text-c1-light, $bg-c1-pink, 15px, none, $border-radius, $bg-c1-light, $text-c1-pink);
+
+                    &:hover {
+                        border: solid $bg-c1-pink;
+                    }
+                }
+            }
+
+        }
+
+        .footer-image {
+
+
+            img {
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                z-index: -1;
+            }
+
+        }
+    }
+
+
+}
+
+
+//footer
+.footer {
+    background-image: url('/img/footer_background.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    height: 450px;
+
+    .container {
+        .row {
+            padding: 100px 90px;
+            display: flex;
+            justify-content: space-between;
+
+            .col-3 {
+
+                h2 {
+                    font-size: $text-base;
+                    color: $text-c1-light;
+                }
+
+                ul {
+                    padding: 10px 0;
+                    color: $text-c1-light;
+                    font-size: $text-1xs;
+
+                    li {
+                        list-style: none;
+                        font-size: $text-1xs;
+
+
+                        .fa-solid {
+                            margin-right: 10px;
+                        }
+                    }
+
+                    a {
+                        color: $text-c1-dark;
+
+                        .fa-brands {
+                            color: $text-c1-light;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+
+            .col-3 {
+                h2 {
+                    color: $text-c1-light;
+
+                }
+
+                ul {
+                    color: $text-c1-light;
+
+                    li {
+                        border-bottom: 1px solid rgba(0, 0, 0, .1);
+                        line-height: 1;
+                        padding: 0.8em 0;
+                        list-style: none;
+
+                        a {
+                            color: $text-c1-light;
+                            list-style: none;
+                            text-decoration: none;
+                            font-size: $text-1xs;
+
+                        }
+                    }
+
+
+                }
+            }
+
+            .col-3 {
+                h2 {}
+
+                div {
+                    margin-top: 30px;
+
+                    input {
+                        outline: none;
+                        width: 100%;
+                        background: transparent;
+                        line-height: 1;
+                        display: block;
+                        padding: 1em;
+                        color: $text-c1-light;
+                        border-radius: 50px;
+                        width: 100%;
+                        font-size: $text-base;
+                        text-align: center;
+                        height: 4em;
+                        border: 1px solid rgba(255, 255, 255, .1);
+
+                        &:hover {
+                            border: 1px solid rgb(255, 255, 255);
+                        }
+                    }
+                }
+
+                div {
+                    button {
+                        // box-shadow: 0 0 0 3em #fff inset;
+                        // color: #181818;
+                        // border-radius: 50px;
+                        height: 4em;
+                        width: 100%;
+                        // font-weight: $text-regular;
+                        // border: none;
+
+                        @include button($text-1xs, $text-regular, $text-c1-dark, $bg-c1-light, $padding-button, $border-button, $border-radius, $bg-c1-light, $text-c1-pink);
+
+                        &:hover {
+                            background: $bg-c1-pink;
+                            color: $text-c1-light;
+                            border: 1px solid $text-c1-light;
+                            // border: 1px solid $text-light;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+@keyframes button {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeinLeft {
+    from {
+        transform: translateX(-250px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
